@@ -3,7 +3,7 @@ import axios from 'axios';
 // Single axios instance pre-configured for the auth API.
 // withCredentials: true ensures the httpOnly JWT cookie is sent on every request.
 const api = axios.create({
-  baseURL: 'http://localhost:5000/api/auth',
+  baseURL: import.meta.env.VITE_API_URL || '/api/auth',
   withCredentials: true,
 });
 

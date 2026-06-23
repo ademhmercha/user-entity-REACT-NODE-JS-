@@ -50,5 +50,8 @@ router.post('/logout', logout);
 
 // Protected route — requires a valid JWT cookie
 router.get('/me', protect, getMe);
+//heakth check route  
+router.get('/health', (req, res) => res.status(200).json({ status: 'ok' }));
+
 
 module.exports = router;

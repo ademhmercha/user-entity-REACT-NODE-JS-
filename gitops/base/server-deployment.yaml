@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: server
-          image: yourdockerhubusername/user-entity-server:latest
+        image: ademmmmm/user-entity-server:latest
           ports:
             - containerPort: 5000
           env:

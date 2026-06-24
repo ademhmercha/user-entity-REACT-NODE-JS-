@@ -15,7 +15,8 @@ spec:
     spec:
       containers:
         - name: client
-          image: yourdockerhubusername/user-entity-client:latest
+          image: ademmmmm/user-entity-client:latest
+
           ports:
             - containerPort: 80
 ---

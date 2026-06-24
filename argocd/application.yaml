@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: user-entity-dev
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/ademhmercha/user-entity-REACT-NODE-JS-.git
+    targetRevision: HEAD
+    path: gitops/overlays/dev
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: userapp
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true

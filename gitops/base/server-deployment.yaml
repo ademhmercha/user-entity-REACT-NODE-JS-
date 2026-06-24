@@ -16,6 +16,8 @@ spec:
       containers:
         - name: server
         image: ademmmmm/user-entity-server:latest
+            imagePullPolicy: Never
+
           ports:
             - containerPort: 5000
           env:

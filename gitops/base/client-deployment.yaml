@@ -16,6 +16,7 @@ spec:
       containers:
         - name: client
           image: ademmmmm/user-entity-client:latest
+          imagePullPolicy: Never
 
           ports:
             - containerPort: 80

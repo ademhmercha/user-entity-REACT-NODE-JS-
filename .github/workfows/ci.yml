@@ -1,0 +1,48 @@
+name: CI - Build and Deploy
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Login to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Build and push server image
+        uses: docker/build-push-action@v5
+        with:
+          context: ./server
+          push: true
+          tags: |
+            ademmmmm/user-entity-server:latest
+            ademmmmm/user-entity-server:${{ github.sha }}
+
+      - name: Build and push client image
+        uses: docker/build-push-action@v5
+        with:
+          context: ./client
+          push: true
+          tags: |
+            ademmmmm/user-entity-client:latest
+            ademmmmm/user-entity-client:${{ github.sha }}
+
+      - name: Update image tag in GitOps repo
+        run: |
+          git config --global user.email "ci@github.com"
+          git config --global user.name "GitHub Actions"
+          sed -i 's|ademmmmm/user-entity-server:.*|ademmmmm/user-entity-server:${{ github.sha }}|g' gitops/base/server-deployment.yaml
+          sed -i 's|ademmmmm/user-entity-client:.*|ademmmmm/user-entity-client:${{ github.sha }}|g' gitops/base/client-deployment.yaml
+          git add gitops/base/server-deployment.yaml gitops/base/client-deployment.yaml
+          git commit -m "ci: update image tags to ${{ github.sha }}"
+          git push https://x-access-token:${{ secrets.GITOPS_TOKEN }}@github.com/ademhmercha/user-entity-REACT-NODE-JS-.git master

@@ -45,4 +45,5 @@ jobs:
           sed -i 's|ademmmmm/user-entity-client:.*|ademmmmm/user-entity-client:${{ github.sha }}|g' gitops/base/client-deployment.yaml
           git add gitops/base/server-deployment.yaml gitops/base/client-deployment.yaml
           git commit -m "ci: update image tags to ${{ github.sha }}"
-          git push https://x-access-token:${{ secrets.GITOPS_TOKEN }}@github.com/ademhmercha/user-entity-REACT-NODE-JS-.git master
+          git remote set-url origin https://ademhmercha:${{ secrets.GITOPS_TOKEN }}@github.com/ademhmercha/user-entity-REACT-NODE-JS-.git
+          git push origin master

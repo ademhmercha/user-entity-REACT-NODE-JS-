@@ -15,9 +15,8 @@ spec:
     spec:
       containers:
         - name: server
-        image: docker.io/ademmmmm/user-entity-server:latest
-            imagePullPolicy: Never
-
+          image: docker.io/ademmmmm/user-entity-server:latest
+          imagePullPolicy: Never
           ports:
             - containerPort: 5000
           env:

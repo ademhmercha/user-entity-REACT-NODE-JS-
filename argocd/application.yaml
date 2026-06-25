@@ -17,4 +17,5 @@ spec:
       prune: true
       selfHeal: true
     syncOptions:
-      - CreateNamespace=true
+      - CreateNamespace=truekubectl get deployment server -n userapp -o yaml | Select-String "imagePullPolicy"
+      

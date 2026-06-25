@@ -173,43 +173,11 @@ On every push to `master`, **GitHub Actions** runs:
 
 ## Screenshots
 
-> Drop your screenshots into the `screenshots/` folder and they'll render here.
+![ArgoCD App List](screenshots/argocd-app-list.png)
+*ArgoCD dashboard — `user-entity-dev` app with **Synced** / **Healthy** status*
 
-### ArgoCD Dashboard
-
-| Screenshot | What to Show |
-|-----------|-------------|
-| ![App List](screenshots/argocd-app-list.png) | `user-entity-dev` with green **Synced** / **Healthy** badges |
-| ![Resource Tree](screenshots/argocd-resource-tree.png) | Visual tree of Deployments, Services, Pods for client/server/mongo |
-| ![Pod Status](screenshots/argocd-pod-status.png) | Pod health, restarts, container status |
-| ![Sync History](screenshots/argocd-sync-history.png) | Timeline of syncs triggered by Git commits |
-| ![Diff View](screenshots/argocd-diff.png) | ArgoCD showing pending changes before sync |
-
-### Kubernetes CLI
-
-| Screenshot | What to Show |
-|-----------|-------------|
-| ![kubectl get all](screenshots/kubectl-get-all.png) | `kubectl get all -n userapp` — all running resources |
-| ![kubectl describe pod](screenshots/kubectl-describe-pod.png) | `kubectl describe pod <server-pod>` — events and status |
-| ![kubectl rollout](screenshots/kubectl-rollout.png) | `kubectl get pods -n userapp -w` — rolling update in action |
-
-### Application
-
-| Screenshot | What to Show |
-|-----------|-------------|
-| ![Login Page](screenshots/app-login.png) | Login form |
-| ![Me Page](screenshots/app-me.png) | Protected profile after login |
-
-### GitOps Flow Diagram
-
-```
-┌──────────┐     ┌───────────────┐     ┌────────────┐     ┌───────────────┐     ┌──────────┐
-│  Git Push │ ──► │ GitHub Actions │ ──► │ Docker Hub │ ──► │ ArgoCD Sync   │ ──► │  Cluster │
-│  master   │     │ Build & Push   │     │ Images      │     │ Detects Drift  │     │  Ready   │
-└──────────┘     └───────────────┘     └────────────┘     └───────────────┘     └──────────┘
-```
-
-Create this as `screenshots/gitops-flow.png` for a polished README.
+![kubectl get all](screenshots/kubectl-get-all.png)
+*Kubernetes — all running resources in the `userapp` namespace*
 
 ---
 
